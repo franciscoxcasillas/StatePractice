@@ -8,23 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var likes: Int = 0
+    @State private var heartGrayScale: Double = 1
+    
     var body: some View {
-        LikeButtonView()
+        LikeButtonView(likes: $likes, heartGrayScale: $heartGrayScale)
     }
 }
 
 struct LikeButtonView: View {
     
-    @State private var heartColor: Color = .black
+    @Binding var likes: Int
+    @Binding var heartGrayScale: Double
     
     var body: some View {
         Button(action: {
-            heartColor = (heartColor == .black) ? .red : .black
+            heartGrayScale -= 0.1
+            likes += 1
         }){
+            VStack{
                 Image(systemName: "heart.fill")
-                .foregroundColor(heartColor)
-                .font(.system(size: 28))
-                .animation(.easeInOut, value: heartColor)
+                    .foregroundColor(.red)
+                    .grayscale(heartGrayScale)
+                    .font(.system(size: 28))
+                Text("\(likes)")
+            }    
         }
     }
 }
