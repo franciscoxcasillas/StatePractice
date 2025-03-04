@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var likes: Int = 0
-    @State private var heartGrayScale: Double = 1
+    @State private var heartGrayScale: Double = 2.5
     
     var body: some View {
         LikeButtonView(likes: $likes, heartGrayScale: $heartGrayScale)
