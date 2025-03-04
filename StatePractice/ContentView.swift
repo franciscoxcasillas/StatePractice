@@ -9,13 +9,23 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        LikeButtonView()
+    }
+}
+
+struct LikeButtonView: View {
+    
+    @State private var heartColor: Color = .black
+    
+    var body: some View {
+        Button(action: {
+            heartColor = (heartColor == .black) ? .red : .black
+        }){
+                Image(systemName: "heart.fill")
+                .foregroundColor(heartColor)
+                .font(.system(size: 28))
+                .animation(.easeInOut, value: heartColor)
         }
-        .padding()
     }
 }
 
